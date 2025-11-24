@@ -1,101 +1,188 @@
-/* Main display styles */
+/* Base styling for the board look */
+:root {
+    --flap-height: 28px;
+    --flip-duration: 0.1s;
+    --char-color: #eee;   /* Light Text (White/Off-White) */
+    --bg-color: #1a1a1a;  /* Dark Flap Surface (Dark Gray) */
+    --frame-color: #000000; /* True Black Frame/Gap */
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  background-color: black;
-  font-family: 'Courier New', monospace;
-  color: white;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    background-color: black;   /* Dark background for surrounding area */
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--char-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 05px;
 }
 
-.flight-display {
-  width: 100%;
-  max-width: 1200px;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+    .board {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        /*border: 10px solid #2d3748;*/
+        background-color: #000000;
+        padding: 1rem 0;
+        border-radius: 12px;
+        width: 100vw;
+    }
+
+    .header-row, .flight-row-grid {
+        grid-template-columns: 90px 12.5fr 7fr 5fr 9fr;
+        display: grid;
+        border-radius: 4px;
+        column-gap: 0px;
+    }
+
+h1 {
+    color: #eed114;
+    font-size: 1.5rem;
 }
 
-.display-header {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #00ff00; /* Green header */
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.header-cell {
+    padding: 0.3rem 0 0.3rem 0.5rem;
+    text-align: left;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #ccc;
+    letter-spacing: 0.1em;
+    font-weight: 700;
 }
 
-.flight-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 2px solid #333;
-  background-color: rgba(0,0,0,0.8);
+.flight-row {
+    margin-top: 4px;
+    background-color: var(--frame-color); /* Row background is the true black frame/gap color */
+    border: 1px solid #1f2937;
+    /* FIX: Explicitly set the row height to match the flap height */
+    height: var(--flap-height);
+    overflow: hidden;
 }
 
-.flight-table th,
-.flight-table td {
-  padding: 0;
-  border: 1px solid #333;
-  text-align: center;
-  vertical-align: middle;
+/* --- Split Flap Cell Styling (Black background, white text) --- */
+
+.char-cell {
+    position: relative;
+    height: var(--flap-height);
+    line-height: var(--flap-height);
+    font-size: 16px;
+    font-weight: 700;
+    overflow: hidden;
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    vertical-align: top;
+    /* Define the border/gap by setting the cell background and adding separators */
+    background-color: var(--bg-color);
+    color: var(--char-color); /* Default text color */
+    border: 1px solid #333; /* Subtle border for split-flap tile definition */
+    box-shadow:
+        inset 1px 0 0 var(--frame-color),
+        inset -1px 0 0 var(--frame-color);
+    margin: 0;
 }
 
-.flight-table th {
-  color: #ffff00; /* Yellow headers */
-  font-size: 1.2rem;
-  font-weight: bold;
-  background-color: #111;
-  padding: 10px 4px;
-}
-
-.flight-table td {
-  height: 50px;
-}
-
-.flap-row {
-  /* No special styles needed */
-}
-
-/* Mobile: Make table responsive */
-@media (max-width: 768px) {
-  .flight-display {
-    padding: 5px;
-    height: 98vh;
-    max-width: none;
-    width: 100vw;
-  }
-
-  .display-header {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-  }
-
-  .flight-table {
-    font-size: 0.8rem;
+/* The actual flap element (Top half) */
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-  }
+    height: 100%;
+    background-color: var(--bg-color);
+    color: var(--char-color);
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    transition: transform var(--flip-duration) ease-in, background-color 0.1s ease-in, color 0.1s ease-in, box-shadow 0.1s ease-in;
+    z-index: 2;
+    will-change: transform;
+    /* Subtle horizontal divider line */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-  .flight-table th {
-    font-size: 1rem;
-    padding: 5px 1px;
-  }
+/* This class is applied when the flip starts */
+.flap.flipping {
+    transform: rotateX(90deg);
+    transition: transform var(--flip-duration) ease-in;
+    background-color: #404040; /* Lighter background for illuminated effect */
+    color: #ffffff; /* Brighter text */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Subtle glow border */
+}
 
-  .flight-table td {
-    padding: 1px;
-  }
+/* The static character revealed underneath (Bottom half) */
+.char-cell::after {
+    content: attr(data-char);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: var(--flap-height);
+    z-index: 1;
+    background-color: var(--bg-color);
+    color: var(--char-color);
+}
 
-  .flap-cell {
-    font-size: 0.9rem;
-    padding: 2px 4px;
-    min-height: 25px;
-    height: auto;
-  }
+/* --- Status Color Overrides (These now apply during and after the FLIP animation) --- */
+
+/* Red for DELAYED - Applied to .char-cell and the static bottom half (::after) */
+.char-cell.status-delayed,
+.char-cell.status-delayed::after {
+    /* background-color: #b91c1c; /* Red BG */
+    color: #b91c1c;            /* Light Red Text */
+    /*border-color: #b91c1c;*/
+}
+/* Red for DELAYED - Applied to the flipping top half (.flap) */
+.flap.status-delayed {
+    /*background-color: #b91c1c;*/
+    color: #b91c1c;
+    /*border-color: #b91c1c;*/
+}
+
+/* Green for BOARDING/GATE OPEN - Applied to .char-cell and the static bottom half (::after) */
+.char-cell.status-boarding-or-open,
+.char-cell.status-boarding-or-open::after {
+    color: #149c5c;
+}
+/* Green for BOARDING/GATE OPEN - Applied to the flipping top half (.flap) */
+.flap.status-boarding-or-open {
+    color: #149c5c;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+/* Mobile adjustments for very small screens */
+@media (max-width: 500px) {
+    :root {
+        --flap-height: 22px;
+    }
+
+    .board {
+        padding: 0.5rem 0;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .header-cell {
+        font-size: 0.5rem;
+        padding: 0.2rem 0 0.2rem 0.3rem;
+    }
+
+    .flight-row,
+    .char-cell {
+        height: var(--flap-height);
+        line-height: var(--flap-height);
+    }
+
+    .char-cell {
+        font-size: 11px;
+        width: 11px;
+    }
+
+    .header-row, .flight-row-grid {
+        column-gap: 0px;
+    }
 }

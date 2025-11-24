@@ -1,20 +1,22 @@
 import React from 'react';
 import FlapCell from './FlapCell';
-import type { Flight } from './flights';
+import type { FlightData } from './types';
 
 interface FlapRowProps {
-  flight: Flight;
+  flight: FlightData;
 }
 
 const FlapRow: React.FC<FlapRowProps> = ({ flight }) => {
   return (
-    <tr className="flap-row">
-      <td><FlapCell text={flight.time} /></td>
-      <td><FlapCell text={flight.destination} /></td>
-      <td><FlapCell text={flight.flightNumber} /></td>
-      <td><FlapCell text={flight.gate} /></td>
-      <td><FlapCell text={flight.status} isStatus={true} status={flight.status} /></td>
-    </tr>
+    <div className="flight-row">
+      <div className="flight-row-grid">
+        <FlapCell text={flight.time} />
+        <FlapCell text={flight.destination} />
+        <FlapCell text={flight.flightNo} />
+        <FlapCell text={flight.gate} />
+        <FlapCell text={flight.status} isStatus={true} status={flight.status} />
+      </div>
+    </div>
   );
 };
 
