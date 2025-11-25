@@ -1,13 +1,13 @@
 import type { FlightData } from './types';
 
 export const FLIGHTS_DATA: FlightData[] = [
-    { time: "09:30", destination: "SYDNEY", flightNo: "CD14", gate: "10", status: "DEPARTED" },
-    { time: "10:15", destination: "PARIS", flightNo: "QF02", gate: "12", status: "BOARDING" },
-    { time: "10:35", destination: "LONDON", flightNo: "BA21", gate: "07", status: "GATE OPEN" },
-    { time: "11:15", destination: "TOKYO", flightNo: "JL58", gate: "15", status: "ON TIME" },
-    { time: "11:40", destination: "LISBON", flightNo: "IB93", gate: "04", status: "ON TIME" },
-    { time: "12:10", destination: "ROME", flightNo: "IT55", gate: "01", status: "ON TIME" },
-    { time: "14:00", destination: "M&A WEDDING", flightNo: "MA27", gate: "--", status: "DELAYED" },
+    { time: "09:30", destination: "SYDNEY     ", flightNo: "CD14", gate: "10", status: "DEPARTED" },
+    { time: "10:15", destination: "PARIS      ", flightNo: "QF02", gate: "12", status: "BOARDING" },
+    { time: "10:35", destination: "LONDON     ", flightNo: "BA21", gate: "07", status: "BOARDING" },
+    { time: "11:15", destination: "TOKYO      ", flightNo: "JL58", gate: "15", status: "ON TIME " },
+    { time: "11:40", destination: "LISBON     ", flightNo: "IB93", gate: "04", status: "ON TIME " },
+    { time: "12:10", destination: "ROME       ", flightNo: "IT55", gate: "01", status: "ON TIME " },
+    { time: "14:00", destination: "M&A WEDDING", flightNo: "MA27", gate: "--", status: "DELAYED " },
 ];
 
 export const MAX_TIME_LENGTH = 4;

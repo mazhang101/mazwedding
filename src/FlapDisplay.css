@@ -5,6 +5,8 @@
     --char-color: #eee;   /* Light Text (White/Off-White) */
     --bg-color: #1a1a1a;  /* Dark Flap Surface (Dark Gray) */
     --frame-color: #000000; /* True Black Frame/Gap */
+    --char-font: 12px;
+    --char-width: 12px;
 }
 
 body {
@@ -12,10 +14,10 @@ body {
     font-family: 'IBM Plex Mono', monospace;
     color: var(--char-color);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    padding: 05px;
+    padding: 0 05px;
 }
 
     .board {
@@ -28,15 +30,17 @@ body {
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 90px 12.5fr 7fr 5fr 9fr;
+        grid-template-columns: 72px 156px 56px 30px 140px;
         display: grid;
         border-radius: 4px;
-        column-gap: 0px;
+        column-gap: 10px;
+        justify-items: start;
     }
 
 h1 {
     color: #eed114;
-    font-size: 1.5rem;
+    font-size: calc(var(--char-font) * 1.5);
+    line-height: 3;
 }
 
 .header-cell {
@@ -64,11 +68,11 @@ h1 {
     position: relative;
     height: var(--flap-height);
     line-height: var(--flap-height);
-    font-size: 16px;
+    font-size: var(--char-font);
     font-weight: 700;
     overflow: hidden;
     display: inline-block;
-    width: 16px;
+    width: var(--char-width);
     text-align: center;
     vertical-align: top;
     /* Define the border/gap by setting the cell background and adding separators */
@@ -152,23 +156,23 @@ h1 {
     justify-content: center;
 }
 
-/* Mobile adjustments for very small screens */
-@media (max-width: 500px) {
+/* Mobile adjustments for base standard phones (360px-393px) */
+@media (max-width: 393px) {
     :root {
-        --flap-height: 22px;
+        --flap-height: 20px;
     }
 
     .board {
-        padding: 0.5rem 0;
+        padding: 0.25rem 0;
     }
 
     h1 {
-        font-size: 1.2rem;
+        font-size: 1.0rem;
     }
 
     .header-cell {
-        font-size: 0.5rem;
-        padding: 0.2rem 0 0.2rem 0.3rem;
+        font-size: 0.4rem;
+        padding: 0.15rem 0 0.15rem 0.2rem;
     }
 
     .flight-row,
@@ -178,11 +182,46 @@ h1 {
     }
 
     .char-cell {
-        font-size: 11px;
-        width: 11px;
+        font-size: 10px;
+        width: 10px;
     }
 
     .header-row, .flight-row-grid {
         column-gap: 0px;
+    }
+}
+
+/* Mobile adjustments for large phones (414px-430px) */
+@media (min-width: 414px) and (max-width: 430px) {
+    :root {
+        --flap-height: 24px;
+    }
+
+    .board {
+        padding: 0.75rem 0;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .header-cell {
+        font-size: 0.55rem;
+        padding: 0.25rem 0 0.25rem 0.2rem;
+    }
+
+    .flight-row,
+    .char-cell {
+        height: var(--flap-height);
+        line-height: var(--flap-height);
+    }
+
+    .char-cell {
+        font-size: 12px;
+        width: 12px;
+    }
+
+    .header-row, .flight-row-grid {
+        column-gap: 5px;
     }
 }
