@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, FC } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { SplitFlapCharProps } from './types';
 import { FLIP_DURATION_MS, CHAR_STAGGER_DELAY } from './constants';
 
@@ -6,7 +6,7 @@ import { FLIP_DURATION_MS, CHAR_STAGGER_DELAY } from './constants';
  * Core component for a single animated split-flap character.
  * isFieldReady indicates if the current character belongs to the field that is actively animating.
  */
-const SplitFlapChar: FC<SplitFlapCharProps> = ({ char, charIndex, isFieldReady, isStatusCell, transientClass }) => {
+const SplitFlapChar: React.FC<SplitFlapCharProps> = ({ char, charIndex, isFieldReady, isStatusCell, transientClass, onCellComplete }) => {
     const [isFinal, setIsFinal] = useState<boolean>(false);
     const charRef = useRef<HTMLDivElement>(null);
     // Use non-breaking space for blank characters to maintain width
@@ -44,6 +44,7 @@ const SplitFlapChar: FC<SplitFlapCharProps> = ({ char, charIndex, isFieldReady, 
                         flapElement.style.transition = 'transform 0s';
 
                         setIsFinal(true);
+                        onCellComplete?.();
 
                     }, FLIP_DURATION_MS);
 
@@ -62,7 +63,7 @@ const SplitFlapChar: FC<SplitFlapCharProps> = ({ char, charIndex, isFieldReady, 
 
             return () => clearTimeout(flipTimeout);
         }
-    }, [isFieldReady, isFinal, charIndex, displayChar, isStatusCell, transientClass]);
+    }, [isFieldReady, isFinal, charIndex, displayChar, isStatusCell, transientClass, onCellComplete]);
 
     const initialFlapContent: string = ' ';
 

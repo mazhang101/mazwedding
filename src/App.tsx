@@ -1,6 +1,4 @@
-import React from 'react';
 import FlapRow from './FlapRow';
-import FlapCell from './FlapCell';
 import { FLIGHTS_DATA } from './constants';
 import './FlapDisplay.css';
 import './FlapCell.css';
