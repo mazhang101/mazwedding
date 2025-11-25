@@ -39,8 +39,15 @@ body {
 
 h1 {
     color: #eed114;
-    font-size: calc(var(--char-font) * 1.5);
+    font-size: 14px;
     line-height: 3;
+    display: flex;
+    gap: 0;
+    align-items: center;
+    white-space: nowrap;
+}
+.airplane {
+    height: 16px;
 }
 
 .header-cell {
