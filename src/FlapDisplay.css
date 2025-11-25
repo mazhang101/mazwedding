@@ -44,7 +44,7 @@ h1 {
 }
 
 .header-cell {
-    padding: 0.3rem 0 0.3rem 0.5rem;
+    padding: 0.3rem 0 0.3rem 0;
     text-align: left;
     font-size: 0.6rem;
     text-transform: uppercase;
@@ -83,6 +83,16 @@ h1 {
         inset 1px 0 0 var(--frame-color),
         inset -1px 0 0 var(--frame-color);
     margin: 0;
+}
+.char-cell::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(51, 51, 51, 0.5);
+    z-index: 3;
 }
 
 /* The actual flap element (Top half) */
