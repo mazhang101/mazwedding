@@ -195,7 +195,7 @@ h1 {
 @media (max-width: 359px) {
     :root {
         --flap-height: 18px;
-        --char-width: 8px; /* Highly reduced char width for true survival on smallest screens */
+        --char-width: 8px; /* Final, stable size for the smallest screens */
     }
 
     .board {
@@ -226,9 +226,10 @@ h1 {
     }
 
     .header-row, .flight-row-grid {
-        column-gap: 1px;
-        /* Using the safer, buffered ratio */
-        grid-template-columns: 17fr 37fr 15fr 8fr 23fr;
+        /* Remove column gap to prevent fixed pixel clipping */
+        column-gap: 0px;
+        /* Use the highly buffered ratio */
+        grid-template-columns: 17fr 28fr 15fr 8fr 32fr;
     }
 }
 
@@ -238,7 +239,7 @@ h1 {
     :root {
         --flap-height: 20px;
         /* Using the default 10px character width, now stable because fixed borders/margins are removed globally. */
-        --char-width: 10px; 
+        --char-width: 9px; 
     }
     
     /* ... other styles for this breakpoint ... */
@@ -289,9 +290,10 @@ h1 {
     }
 
     .header-row, .flight-row-grid {
-        column-gap: 1px;
-        /* Using the safer, buffered ratio */
-        grid-template-columns: 17fr 37fr 15fr 8fr 23fr;
+    grid-template-columns: 17fr 28fr 15fr 8fr 32fr;
+    display: grid;
+    column-gap: 0px;
+    justify-items: start;
     }
 }
 
