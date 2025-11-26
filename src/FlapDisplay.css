@@ -192,19 +192,22 @@ h1 {
         padding: 0.15rem 0 0.15rem 0.2rem;
     }
 
-    .flight-row,
-    .char-cell {
+    .flight-row {
+        border: none;
         height: var(--flap-height);
         line-height: var(--flap-height);
     }
 
     .char-cell {
+        height: var(--flap-height);
+        line-height: var(--flap-height);
         font-size: 10px;
         width: 10px;
     }
 
     .header-row, .flight-row-grid {
-        column-gap: 0px;
+        grid-template-columns: 64px 135px 54px 29px 150px;
+        column-gap: 1px;
     }
 }
 
