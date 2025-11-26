@@ -74,6 +74,7 @@ h1 {
 /* --- Split Flap Cell Styling (Black background, white text) --- */
 
 .char-cell {
+    /* Standard Positioning and Dimensions */
     position: relative;
     height: var(--flap-height);
     line-height: var(--flap-height);
@@ -81,26 +82,36 @@ h1 {
     font-weight: 700;
     overflow: hidden;
     display: inline-block;
-    /* width: var(--char-width); */
-    width: calc(var(--char-width) - 2.8px);
+    width: var(--char-width); /* Proportional width defined by variable */
     text-align: center;
     vertical-align: top;
-    /* Define the border/gap by setting the cell background and adding separators */
-    background-color: var(--bg-color);
-    color: var(--char-color); /* Default text color */
-    border: 1px solid #333; /* Subtle border for split-flap tile definition */
+
+    /* Base Colors */
+    background-color: var(--bg-color); /* Dark Flap Surface */
+    color: var(--char-color);         /* Light Text Color */
+
+    /* ELIMINATE FIXED SPACING FOR ACCURATE GRID LAYOUT */
+    border: none; /* Removes 1px fixed border */
+    margin: 0;    /* Removes 0.4px fixed margin */
+
+    /* RECREATE THE VISUAL GRID EFFECT USING BOX-SHADOWS */
     box-shadow:
-        inset 1px 0 0 var(--frame-color),
+        /* Subtle light inner border for the cell definition */
+        inset 0 0 0 0.5px #333, 
+        /* Vertical frame lines for the gap (True Black) */
+        inset 1px 0 0 var(--frame-color), 
         inset -1px 0 0 var(--frame-color);
-    margin: 0.4px;
 }
+
+/* Adjust center line for shadow-based look */
 .char-cell::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 0;
     right: 0;
-    height: 1px;
+    /* Use a very thin line to match the shadow thickness */
+    height: 0.5px; 
     background: rgba(51, 51, 51, 0.5);
     z-index: 3;
 }
@@ -226,41 +237,20 @@ h1 {
 @media (max-width: 413px) {
     :root {
         --flap-height: 20px;
-        /* REDUCED CHAR WIDTH for overall fit on smaller screens */
-        --char-width: 12px; 
+        /* Using the default 10px character width, now stable because fixed borders/margins are removed globally. */
+        --char-width: 10px; 
     }
-
-    .board {
-        padding: 0.25rem 0;
-    }
-
-    h1 {
-        font-size: 1.0rem;
-    }
-
-    .header-cell {
-        font-size: 0.4rem;
-        padding: 0.15rem 0 0.15rem 0.2rem;
-    }
-
-    .flight-row {
-        border: none;
-        height: var(--flap-height);
-        line-height: var(--flap-height);
-    }
-
-    /* Important: Ensure char-cell uses the variables */
-    .char-cell {
-        height: var(--flap-height);
-        line-height: var(--flap-height);
-        font-size: 10px;
-        width: var(--char-width); 
-    }
+    
+    /* ... other styles for this breakpoint ... */
 
     .header-row, .flight-row-grid {
-        column-gap: 1px;
-        /* Using the safer, buffered ratio */
-        grid-template-columns: 17fr 37fr 15fr 8fr 23fr;
+        /* Eliminates the column gap to prevent fixed pixel consumption that causes clipping */
+        column-gap: 0px; 
+        
+        /* The robust fr ratio (e.g., 17fr 33fr 15fr 8fr 27fr) should be defined here or globally */
+        /* ...
+        grid-template-columns: 17fr 33fr 15fr 8fr 27fr; 
+        ... */
     }
 }
 
