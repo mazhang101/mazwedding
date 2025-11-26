@@ -271,6 +271,11 @@ h1.airplane {
 
 /* Small phones (≤413px) */
 @media (max-width: 413px) {
+    body {
+        justify-content: center;  /* Center board content on small phones */
+        align-items: center;
+    }
+
     :root {
         --flap-height: 20px;
         --char-width: 9px;
