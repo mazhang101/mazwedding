@@ -5,8 +5,8 @@
     --char-color: #eee;   /* Light Text (White/Off-White) */
     --bg-color: #1a1a1a;  /* Dark Flap Surface (Dark Gray) */
     --frame-color: #000000; /* True Black Frame/Gap */
-    --char-font: 12px;
-    --char-width: 12px;
+    --char-font: 13px;
+    --char-width: 10px;
 }
 
 body {
@@ -25,15 +25,15 @@ body {
         /*border: 10px solid #2d3748;*/
         background-color: #000000;
         padding: 1rem 0;
-        border-radius: 12px;
+        border-radius: 0px;
         width: 100vw;
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 72px 156px 56px 30px 140px;
+        grid-template-columns: 64px 135px 54px 29px 150px;
         display: grid;
-        border-radius: 4px;
-        column-gap: 10px;
+        /* border-radius: 4px; */
+        column-gap: 1px;
         justify-items: start;
     }
 
@@ -63,7 +63,7 @@ h1 {
 .flight-row {
     margin-top: 4px;
     background-color: var(--frame-color); /* Row background is the true black frame/gap color */
-    border: 1px solid #1f2937;
+    border: none;
     /* FIX: Explicitly set the row height to match the flap height */
     height: var(--flap-height);
     overflow: hidden;
