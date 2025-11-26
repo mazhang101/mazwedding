@@ -32,14 +32,13 @@ body {
     .header-row, .flight-row-grid {
         grid-template-columns: 64px 135px 54px 29px 150px;
         display: grid;
-        /* border-radius: 4px; */
         column-gap: 1px;
         justify-items: start;
     }
 
 h1 {
     color: #eed114;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 3;
     display: flex;
     gap: 0;
@@ -62,9 +61,7 @@ h1 {
 
 .flight-row {
     margin-top: 4px;
-    background-color: var(--frame-color); /* Row background is the true black frame/gap color */
-    border: none;
-    /* FIX: Explicitly set the row height to match the flap height */
+    background-color: var(--frame-color); 
     height: var(--flap-height);
     overflow: hidden;
 }
@@ -237,11 +234,11 @@ h1 {
     }
 
     .char-cell {
-        font-size: 12px;
-        width: 12px;
+        font-size: 10px;
+        width: 10px;
     }
 
     .header-row, .flight-row-grid {
-        column-gap: 5px;
+        column-gap: 1px;
     }
 }
