@@ -81,7 +81,8 @@ h1 {
     font-weight: 700;
     overflow: hidden;
     display: inline-block;
-    width: var(--char-width);
+    /* width: var(--char-width); */
+    width: calc(var(--char-width) - 2.8px);
     text-align: center;
     vertical-align: top;
     /* Define the border/gap by setting the cell background and adding separators */
@@ -226,7 +227,7 @@ h1 {
     :root {
         --flap-height: 20px;
         /* REDUCED CHAR WIDTH for overall fit on smaller screens */
-        --char-width: 9px; 
+        --char-width: 12px; 
     }
 
     .board {
@@ -311,7 +312,7 @@ h1 {
     }
     .header-row, .flight-row-grid {
         /* Using the safer, buffered ratio for proportional scaling */
-        grid-template-columns: 17fr 30fr 15fr 8fr 30fr;
+        grid-template-columns: 17fr 35fr 15fr 8fr 25fr;
         column-gap: 2px; /* Use the wider gap for desktop */
     }
 }
