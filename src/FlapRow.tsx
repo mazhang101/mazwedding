@@ -5,9 +5,10 @@ import { CHAR_STAGGER_DELAY, FLIP_DURATION_MS, FIELD_BUFFER_MS } from './constan
 
 interface FlapRowProps {
   flight: FlightData;
+  onRowComplete?: () => void;
 }
 
-const FlapRow: React.FC<FlapRowProps> = ({ flight }) => {
+const FlapRow: React.FC<FlapRowProps> = ({ flight, onRowComplete }) => {
   const timeReady = true;
   const [destReady, setDestReady] = useState(false);
   const [flightReady, setFlightReady] = useState(false);
@@ -15,6 +16,10 @@ const FlapRow: React.FC<FlapRowProps> = ({ flight }) => {
   const [statusReady, setStatusReady] = useState(false);
 
   const statusDelay = flight.status === "DELAYED" ? (flight.destination.length - 1) * CHAR_STAGGER_DELAY + FLIP_DURATION_MS + FIELD_BUFFER_MS : 0;
+
+  const handleRowComplete = () => {
+    onRowComplete?.();
+  };
 
 
 
@@ -31,6 +36,7 @@ const FlapRow: React.FC<FlapRowProps> = ({ flight }) => {
           status={flight.status}
           isFieldReady={statusReady}
           startDelayOffset={statusDelay}
+          onFieldComplete={handleRowComplete}
         />
       </div>
     </div>

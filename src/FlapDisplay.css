@@ -20,18 +20,19 @@ body {
     padding: 0 05px;
 }
 
-    .board { 
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
-        /*border: 10px solid #2d3748;*/ 
-        background-color: #000000; 
-        padding: 1rem 0; 
-        border-radius: 0px; 
-        /* 1. Limit the width on large screens */ 
-        max-width: 900px; 
-        /* 2. Set width to 98% to account for small padding/margins on mobile */ 
-        width: 98%; 
-        /* 3. Center the fixed-width block horizontally */ 
+    .board {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        /*border: 10px solid #2d3748;*/
+        background-color: #000000;
+        padding: 1rem 0;
+        border-radius: 0px;
+        /* 1. Limit the width on large screens */
+        max-width: 900px;
+        /* 2. Set width to 98% to account for small padding/margins on mobile */
+        width: 98%;
+        /* 3. Center the fixed-width block horizontally */
         margin: 0 auto;
+        position: relative;   /* Create positioning context for absolutely positioned banner */
     }
 
     .header-row, .flight-row-grid {
@@ -49,6 +50,9 @@ h1 {
     gap: 0;
     align-items: center;
     white-space: nowrap;
+}
+h1.airplane {
+    height: 16px;
 }
 .airplane {
     height: 16px;
@@ -188,6 +192,80 @@ h1 {
 }
 
 /* ======================================================= */
+/* 📢 NOTIFICATION BANNER */
+/* ======================================================= */
+
+.notification-banner {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 98%;
+    max-width: 900px;
+    background-color: #1a1a1a;  /* Lighter background */
+    color: #eee;             /* Match board text color */
+    border: none;
+    padding: 24px 20px;     /* Increased padding around content */
+    border-radius: 8px;      /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-size: 13px;         /* Match default table text size */
+    z-index: 10;
+    opacity: 0;             /* Start hidden */
+    transition: opacity 0.5s ease-in-out;  /* Smooth fade transition */
+}
+
+.notification-banner.show {
+    opacity: 1;             /* Show when showBanner is true */
+}
+
+.banner-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 18px;         /* Smaller to fit theme */
+    cursor: pointer;
+    color: #888;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: color 0.2s;
+}
+
+.banner-close:hover {
+    color: #ccc;
+}
+
+.banner-title {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #eed114;          /* Match "International Departures" color */
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.banner-link {
+    position: relative;
+    font-size: 12px;
+    color: #888;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+    padding: 8px 0;
+    margin-bottom: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.banner-link:hover {
+    color: #eed114;
+}
+
+/* ======================================================= */
 /* 📱 MOBILE MEDIA QUERIES */
 /* ======================================================= */
 
@@ -201,13 +279,25 @@ h1 {
     .header-row, .flight-row-grid {
         column-gap: 0px;
     }
+
+    .notification-banner {
+        width: 252px;  /* 70% of small phones grid width (360px) */
+    }
 }
 
 /* Large phones (≥414px) */
 @media (min-width: 414px) {
+    body {
+        justify-content: center;  /* Center board content except smallest phones */
+    }
+
     :root {
         --flap-height: 24px;
         --char-width: 10px;
+    }
+
+    h1 {
+        font-size: 1.48rem;  /* Scaled proportionally to 14px table text */
     }
 
     .board {
@@ -219,6 +309,10 @@ h1 {
         padding: 0.25rem 0 0.25rem 0.2rem;
     }
 
+    .banner-title {
+        font-size: 0.55rem;  /* Match header-cell font size change */
+    }
+
     .flight-row {
         border: none;
         height: var(--flap-height);
@@ -228,8 +322,13 @@ h1 {
     .char-cell {
         height: var(--flap-height);
         line-height: var(--flap-height);
-        font-size: 10px;
+        font-size: 14px;
         width: var(--char-width);
+    }
+
+    .notification-banner {
+        width: 294px;  /* 70% of large phones grid width (420px) */
+        font-size: 14px;  /* Match table text font size */
     }
 
     .header-row, .flight-row-grid {
@@ -248,6 +347,19 @@ h1 {
 
     :root {
         --flap-height: 28px;
+    }
+
+    h1 {
+        font-size: 1.57rem;  /* Scaled proportionally to 15px table text */
+    }
+
+    .char-cell {
+        font-size: 15px;  /* Larger than small phones for desktop readability */
+    }
+
+    .notification-banner {
+        width: 476px;  /* 70% of laptops grid width (680px) */
+        font-size: 15px;  /* Match table text font size */
     }
 
     .header-row, .flight-row-grid {
