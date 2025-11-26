@@ -30,7 +30,7 @@ body {
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 64px 141px 52px 26px 116px;
+        grid-template-columns: 16fr 35fr 13fr 7fr 29fr;
         display: grid;
         column-gap: 1px;
         justify-items: start;
@@ -214,7 +214,7 @@ h1 {
         column-gap: 1px;
         /* Calculated Widths (Time: 59, Dest: 130, Flight: 71, Gate: 47, Status: 83) 
            Total Width: 390px (Fits perfectly) */
-        grid-template-columns: 59px 130px 48px 24px 107px;
+        grid-template-columns: 16fr 35fr 13fr 7fr 29fr;
     }
 }
 
@@ -256,6 +256,19 @@ h1 {
         column-gap: 1px;
         /* Calculated Widths (Time: 64, Dest: 141, Flight: 77, Gate: 51, Status: 90) 
            Total Width: 423px (Optimal for Pro Max/Ultra screens) */
-        grid-template-columns: 64px 141px 52px 26px 116px;
+        grid-template-columns: 16fr 35fr 13fr 7fr 29fr;
+    }
+}
+
+/* 3. Dedicated Laptop/Tablet Viewport (768px and up) */
+@media (min-width: 768px) {
+    :root {
+        --flap-height: 28px; /* Use the larger desktop flap size */
+    }
+    .header-row, .flight-row-grid {
+        /* Re-apply the desktop column definitions */
+        grid-template-columns: 64px 140px 52px 28px 116px;
+        /* Ensure the wide gap is used for tablets/laptops */
+        column-gap: 2px; 
     }
 }
