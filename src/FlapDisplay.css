@@ -227,7 +227,11 @@ h1 {
         padding: 0.25rem 0 0.25rem 0.2rem;
     }
 
-    .flight-row,
+    .flight-row {
+        border: none;
+        height: var(--flap-height);
+        line-height: var(--flap-height);
+    }
     .char-cell {
         height: var(--flap-height);
         line-height: var(--flap-height);
@@ -240,5 +244,7 @@ h1 {
 
     .header-row, .flight-row-grid {
         column-gap: 1px;
+        grid-template-columns: 64px 140px 54px 29px 150px;
+
     }
 }
