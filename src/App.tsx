@@ -12,7 +12,7 @@ function App() {
         <div className="header-cell">Destination</div>
         <div className="header-cell">Flight No.</div>
         <div className="header-cell">Gate</div>
-        <div className="header-cell">Status</div>
+        <div className="header-cell">  Status</div>
       </div>
       {FLIGHTS_DATA.map((flight, index) => (
         <FlapRow key={index} flight={flight} />

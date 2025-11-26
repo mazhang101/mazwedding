@@ -43,7 +43,7 @@ body {
 
 h1 {
     color: #eed114;
-    font-size: 13px;
+    font-size: 1.4rem;
     line-height: 3;
     display: flex;
     gap: 0;
@@ -188,87 +188,30 @@ h1 {
 }
 
 /* ======================================================= */
-/* 📱 MOBILE MEDIA QUERIES (Updated for Full Coverage) */
+/* 📱 MOBILE MEDIA QUERIES */
 /* ======================================================= */
 
-/* 0. Ultra Small Mobile Viewport (max-width: 359px) */
-@media (max-width: 359px) {
-    :root {
-        --flap-height: 18px;
-        --char-width: 8px; /* Final, stable size for the smallest screens */
-    }
-
-    .board {
-        padding: 0.25rem 0;
-    }
-
-    h1 {
-        font-size: 1.0rem;
-    }
-
-    .header-cell {
-        font-size: 0.35rem; /* Slightly reduced font size */
-        padding: 0.15rem 0 0.15rem 0.2rem;
-    }
-
-    .flight-row {
-        border: none;
-        height: var(--flap-height);
-        line-height: var(--flap-height);
-    }
-
-    /* Important: Ensure char-cell uses the variables */
-    .char-cell {
-        height: var(--flap-height);
-        line-height: var(--flap-height);
-        font-size: 10px;
-        width: var(--char-width); 
-    }
-
-    .header-row, .flight-row-grid {
-        /* Remove column gap to prevent fixed pixel clipping */
-        column-gap: 0px;
-        /* Use the highly buffered ratio */
-        grid-template-columns: 17fr 28fr 15fr 8fr 32fr;
-    }
-}
-
-/* 1. Small to Standard Phones (max-width: 413px) 
-   Covers standard phones and smaller Pro models. Uses 9px char width. */
+/* Small phones (≤413px) */
 @media (max-width: 413px) {
     :root {
         --flap-height: 20px;
-        /* Using the default 10px character width, now stable because fixed borders/margins are removed globally. */
-        --char-width: 9px; 
+        --char-width: 9px;
     }
-    
-    /* ... other styles for this breakpoint ... */
 
     .header-row, .flight-row-grid {
-        /* Eliminates the column gap to prevent fixed pixel consumption that causes clipping */
-        column-gap: 0px; 
-        
-        /* The robust fr ratio (e.g., 17fr 33fr 15fr 8fr 27fr) should be defined here or globally */
-        /* ...
-        grid-template-columns: 17fr 33fr 15fr 8fr 27fr; 
-        ... */
+        column-gap: 0px;
     }
 }
 
-/* 2. Large Phones (min-width: 414px) 
-   Covers Pro Max/Ultra phones. Uses 10px char width. */
+/* Large phones (≥414px) */
 @media (min-width: 414px) {
     :root {
         --flap-height: 24px;
-        --char-width: 10px; /* Maintained 10px width */
+        --char-width: 10px;
     }
 
     .board {
         padding: 0.75rem 0;
-    }
-
-    h1 {
-        font-size: 1.4rem;
     }
 
     .header-cell {
@@ -281,30 +224,30 @@ h1 {
         height: var(--flap-height);
         line-height: var(--flap-height);
     }
-    
+
     .char-cell {
         height: var(--flap-height);
         line-height: var(--flap-height);
         font-size: 10px;
-        width: var(--char-width); /* Use the 10px variable */
+        width: var(--char-width);
     }
 
     .header-row, .flight-row-grid {
-    grid-template-columns: 17fr 28fr 15fr 8fr 32fr;
-    display: grid;
-    column-gap: 0px;
-    justify-items: start;
+        grid-template-columns: 17fr 28fr 15fr 8fr 32fr;
+        display: grid;
+        column-gap: 0px;
+        justify-items: start;
     }
 }
 
-/* 3. Dedicated Laptop/Tablet Viewport (768px and up) */
+/* Laptops/Tablets (≥768px) */
 @media (min-width: 768px) {
     :root {
-        --flap-height: 28px; /* Use the larger desktop flap size */
+        --flap-height: 28px;
     }
+
     .header-row, .flight-row-grid {
-        /* Using the safer, buffered ratio for proportional scaling */
         grid-template-columns: 17fr 35fr 15fr 8fr 25fr;
-        column-gap: 2px; /* Use the wider gap for desktop */
+        column-gap: 2px;
     }
 }
