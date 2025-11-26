@@ -52,24 +52,19 @@ function App() {
       <div className={`notification-banner ${showBanner ? 'show' : ''}`}>
         <button className="banner-close" onClick={closeBanner}>×</button>
         <div className="banner-title">
-          Important Update: Flight No. MA27
+          Important Update: Flight No. MA 27
         </div>
         <div className="banner-message">
-        We regret to inform you that your flight, MA 27 to Michelle and Andrew's European Summer Wedding 2026, is now delayed due to schedule overload.
-<br>
-Original Departure (Targeted): Summer 2026 
-</br>
-<br>
-New Estimated Departure: 2027 
-</br>
-<br>
-Destination: TBC mid-2026</br>
+        <p>We strongly regret to inform you that your flight, MA 27 to Michelle and Andrew's European Summer Wedding 2026, is now delayed due to schedule overload.</p>
+        <p><strong>Original Departure:</strong> Summer 2026</p>
+        <p><strong>New Estimated Departure:</strong> 2027</p>
+        <p><strong>Destination:</strong> TBC mid-2026</p>
         </div>
       </div>
 
       {bannerDismissed && !showBanner && (
         <div className="banner-link" onClick={openBanner}>
-          View Important Update For Flight No. MA27
+          View Important Update For Flight No. MA 27
         </div>
       )}
     </div>
