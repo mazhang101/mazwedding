@@ -15,7 +15,7 @@ body {
     color: var(--char-color);
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
     padding: 0 05px;
 }
@@ -97,7 +97,7 @@ h1 {
     /* RECREATE THE VISUAL GRID EFFECT USING BOX-SHADOWS */
     box-shadow:
         /* Subtle light inner border for the cell definition */
-        inset 0 0 0 0.5px #333, 
+        inset 0 0 0 2px #333,
         /* Vertical frame lines for the gap (True Black) */
         inset 1px 0 0 var(--frame-color), 
         inset -1px 0 0 var(--frame-color);
@@ -242,6 +242,10 @@ h1 {
 
 /* Laptops/Tablets (≥768px) */
 @media (min-width: 768px) {
+    body {
+        justify-content: center;  /* Center board on large screens */
+    }
+
     :root {
         --flap-height: 28px;
     }
