@@ -30,7 +30,7 @@ body {
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 64px 160px 54px 29px 150px;
+        grid-template-columns: 64px 141px 52px 26px 116px;
         display: grid;
         column-gap: 1px;
         justify-items: start;
@@ -170,7 +170,12 @@ h1 {
     justify-content: center;
 }
 
-/* 1. Small to Standard Phones (Covers devices up to 413px wide) */
+/* ======================================================= */
+/* 📱 MOBILE MEDIA QUERIES (Updated for Full Coverage) */
+/* ======================================================= */
+
+/* 1. Small to Standard Phones (max-width: 413px) 
+   Covers standard phones and smaller Pro models. Uses 9px char width. */
 @media (max-width: 413px) {
     :root {
         --flap-height: 20px;
@@ -197,21 +202,24 @@ h1 {
         line-height: var(--flap-height);
     }
 
+    /* Important: Ensure char-cell uses the variables */
     .char-cell {
         height: var(--flap-height);
         line-height: var(--flap-height);
         font-size: 10px;
-        width: var(--char-width); /* Use the 9px variable */
+        width: var(--char-width); 
     }
 
     .header-row, .flight-row-grid {
         column-gap: 1px;
-        /* DESTINATION COLUMN INCREASED: 130px fits 11 characters * 11.8px total width */
-        grid-template-columns: 48px 130px 40px 22px 113px;
+        /* Calculated Widths (Time: 59, Dest: 130, Flight: 71, Gate: 47, Status: 83) 
+           Total Width: 390px (Fits perfectly) */
+        grid-template-columns: 59px 130px 48px 24px 107px;
     }
 }
 
-/* 2. Large Phones (Covers devices 414px and wider, including Pro Max/Ultra) */
+/* 2. Large Phones (min-width: 414px) 
+   Covers Pro Max/Ultra phones. Uses 10px char width. */
 @media (min-width: 414px) {
     :root {
         --flap-height: 24px;
@@ -246,7 +254,8 @@ h1 {
 
     .header-row, .flight-row-grid {
         column-gap: 1px;
-        /* DESTINATION COLUMN INCREASED: 141px fits 11 characters * 12.8px total width */
-        grid-template-columns: 64px 141px 54px 29px 150px;
+        /* Calculated Widths (Time: 64, Dest: 141, Flight: 77, Gate: 51, Status: 90) 
+           Total Width: 423px (Optimal for Pro Max/Ultra screens) */
+        grid-template-columns: 64px 141px 52px 26px 116px;
     }
 }
