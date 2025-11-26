@@ -30,7 +30,7 @@ body {
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 64px 140px 54px 29px 150px;
+        grid-template-columns: 64px 160px 54px 29px 150px;
         display: grid;
         column-gap: 1px;
         justify-items: start;
@@ -170,10 +170,12 @@ h1 {
     justify-content: center;
 }
 
-/* Mobile adjustments for base standard phones (360px-393px) */
-@media (max-width: 393px) {
+/* 1. Small to Standard Phones (Covers devices up to 413px wide) */
+@media (max-width: 413px) {
     :root {
         --flap-height: 20px;
+        /* REDUCED CHAR WIDTH for overall fit on smaller screens */
+        --char-width: 9px; 
     }
 
     .board {
@@ -199,19 +201,21 @@ h1 {
         height: var(--flap-height);
         line-height: var(--flap-height);
         font-size: 10px;
-        width: 10px;
+        width: var(--char-width); /* Use the 9px variable */
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 48px 105px 40px 22px 113px;
         column-gap: 1px;
+        /* DESTINATION COLUMN INCREASED: 130px fits 11 characters * 11.8px total width */
+        grid-template-columns: 48px 130px 40px 22px 113px;
     }
 }
 
-/* Mobile adjustments for large phones (414px-430px) */
-@media (min-width: 414px) and (max-width: 430px) {
+/* 2. Large Phones (Covers devices 414px and wider, including Pro Max/Ultra) */
+@media (min-width: 414px) {
     :root {
         --flap-height: 24px;
+        --char-width: 10px; /* Maintained 10px width */
     }
 
     .board {
@@ -232,19 +236,17 @@ h1 {
         height: var(--flap-height);
         line-height: var(--flap-height);
     }
+    
     .char-cell {
         height: var(--flap-height);
         line-height: var(--flap-height);
-    }
-
-    .char-cell {
         font-size: 10px;
-        width: 10px;
+        width: var(--char-width); /* Use the 10px variable */
     }
 
     .header-row, .flight-row-grid {
         column-gap: 1px;
-        grid-template-columns: 64px 140px 54px 29px 150px;
-
+        /* DESTINATION COLUMN INCREASED: 141px fits 11 characters * 12.8px total width */
+        grid-template-columns: 64px 141px 54px 29px 150px;
     }
 }
