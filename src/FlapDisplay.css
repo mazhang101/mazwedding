@@ -20,17 +20,22 @@ body {
     padding: 0 05px;
 }
 
-    .board {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        /*border: 10px solid #2d3748;*/
-        background-color: #000000;
-        padding: 1rem 0;
-        border-radius: 0px;
-        width: 100vw;
+    .board { 
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+        /*border: 10px solid #2d3748;*/ 
+        background-color: #000000; 
+        padding: 1rem 0; 
+        border-radius: 0px; 
+        /* 1. Limit the width on large screens */ 
+        max-width: 900px; 
+        /* 2. Set width to 98% to account for small padding/margins on mobile */ 
+        width: 98%; 
+        /* 3. Center the fixed-width block horizontally */ 
+        margin: 0 auto;
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 15fr 37fr 15fr 6fr 27fr;
+        grid-template-columns: 17fr 37fr 15fr 8fr 23fr;
         display: grid;
         column-gap: 1px;
         justify-items: start;
@@ -174,6 +179,47 @@ h1 {
 /* 📱 MOBILE MEDIA QUERIES (Updated for Full Coverage) */
 /* ======================================================= */
 
+/* 0. Ultra Small Mobile Viewport (max-width: 359px) */
+@media (max-width: 359px) {
+    :root {
+        --flap-height: 18px;
+        --char-width: 8px; /* Highly reduced char width for true survival on smallest screens */
+    }
+
+    .board {
+        padding: 0.25rem 0;
+    }
+
+    h1 {
+        font-size: 1.0rem;
+    }
+
+    .header-cell {
+        font-size: 0.35rem; /* Slightly reduced font size */
+        padding: 0.15rem 0 0.15rem 0.2rem;
+    }
+
+    .flight-row {
+        border: none;
+        height: var(--flap-height);
+        line-height: var(--flap-height);
+    }
+
+    /* Important: Ensure char-cell uses the variables */
+    .char-cell {
+        height: var(--flap-height);
+        line-height: var(--flap-height);
+        font-size: 10px;
+        width: var(--char-width); 
+    }
+
+    .header-row, .flight-row-grid {
+        column-gap: 1px;
+        /* Using the safer, buffered ratio */
+        grid-template-columns: 17fr 37fr 15fr 8fr 23fr;
+    }
+}
+
 /* 1. Small to Standard Phones (max-width: 413px) 
    Covers standard phones and smaller Pro models. Uses 9px char width. */
 @media (max-width: 413px) {
@@ -212,7 +258,8 @@ h1 {
 
     .header-row, .flight-row-grid {
         column-gap: 1px;
-        grid-template-columns: 15fr 37fr 15fr 6fr 27fr;
+        /* Using the safer, buffered ratio */
+        grid-template-columns: 17fr 37fr 15fr 8fr 23fr;
     }
 }
 
@@ -252,7 +299,8 @@ h1 {
 
     .header-row, .flight-row-grid {
         column-gap: 1px;
-        grid-template-columns: 16fr 35fr 13fr 7fr 29fr;
+        /* Using the safer, buffered ratio */
+        grid-template-columns: 17fr 37fr 15fr 8fr 23fr;
     }
 }
 
@@ -262,7 +310,8 @@ h1 {
         --flap-height: 28px; /* Use the larger desktop flap size */
     }
     .header-row, .flight-row-grid {
-        grid-template-columns: 15fr 37fr 15fr 6fr 27fr;
-        column-gap: 1px; 
+        /* Using the safer, buffered ratio for proportional scaling */
+        grid-template-columns: 17fr 30fr 15fr 8fr 30fr;
+        column-gap: 2px; /* Use the wider gap for desktop */
     }
 }
