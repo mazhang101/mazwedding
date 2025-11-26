@@ -30,7 +30,7 @@ body {
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 64px 135px 54px 29px 150px;
+        grid-template-columns: 64px 140px 54px 29px 150px;
         display: grid;
         column-gap: 1px;
         justify-items: start;
@@ -86,7 +86,7 @@ h1 {
     box-shadow:
         inset 1px 0 0 var(--frame-color),
         inset -1px 0 0 var(--frame-color);
-    margin: 0;
+    margin: 0.4px;
 }
 .char-cell::before {
     content: '';
@@ -203,7 +203,7 @@ h1 {
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 64px 135px 54px 29px 150px;
+        grid-template-columns: 64px 140px 54px 29px 150px;
         column-gap: 1px;
     }
 }
