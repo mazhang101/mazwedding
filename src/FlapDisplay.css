@@ -203,7 +203,7 @@ h1 {
     }
 
     .header-row, .flight-row-grid {
-        grid-template-columns: 64px 140px 54px 29px 150px;
+        grid-template-columns: 48px 105px 40px 22px 113px;
         column-gap: 1px;
     }
 }
