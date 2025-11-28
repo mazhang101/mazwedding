@@ -21,16 +21,13 @@ body {
 }
 
     .board {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         /*border: 10px solid #2d3748;*/
-        background-color: #000000;
+        background-color: #0A0A0A;
         padding: 1rem 0;
         border-radius: 0px;
-        /* 1. Limit the width on large screens */
-        max-width: 900px;
-        /* 2. Set width to 98% to account for small padding/margins on mobile */
-        width: 98%;
-        /* 3. Center the fixed-width block horizontally */
+        /* Set width to 100% for full width experience on all viewports */
+        width: 100%;
+        /* Center the block horizontally */
         margin: 0 auto;
         position: relative;   /* Create positioning context for absolutely positioned banner */
     }
@@ -43,7 +40,8 @@ body {
     }
 
 h1 {
-    color: #eed114;
+    color: #FFCC00;
+    font-family: 'Consolas', monospace;
     font-size: 1.4rem;
     line-height: 3;
     display: flex;
@@ -92,7 +90,7 @@ h1.airplane {
 
     /* Base Colors */
     background-color: var(--bg-color); /* Dark Flap Surface */
-    color: var(--char-color);         /* Light Text Color */
+    color: #F7EED3;         /* Light Text Color */
 
     /* ELIMINATE FIXED SPACING FOR ACCURATE GRID LAYOUT */
     border: none; /* Removes 1px fixed border */
@@ -103,7 +101,7 @@ h1.airplane {
         /* Subtle light inner border for the cell definition */
         inset 0 0 0 2px #333,
         /* Vertical frame lines for the gap (True Black) */
-        inset 1px 0 0 var(--frame-color), 
+        inset 1px 0 0 var(--frame-color),
         inset -1px 0 0 var(--frame-color);
 }
 
@@ -128,7 +126,7 @@ h1.airplane {
     width: 100%;
     height: 100%;
     background-color: var(--bg-color);
-    color: var(--char-color);
+    color: #F7EED3;
     transform-style: preserve-3d;
     transform-origin: bottom;
     transition: transform var(--flip-duration) ease-in, background-color 0.1s ease-in, color 0.1s ease-in, box-shadow 0.1s ease-in;
@@ -158,7 +156,7 @@ h1.airplane {
     line-height: var(--flap-height);
     z-index: 1;
     background-color: var(--bg-color);
-    color: var(--char-color);
+    color: #F7EED3;
 }
 
 /* --- Status Color Overrides (These now apply during and after the FLIP animation) --- */
@@ -167,24 +165,24 @@ h1.airplane {
 .char-cell.status-delayed,
 .char-cell.status-delayed::after {
     /* background-color: #b91c1c; /* Red BG */
-    color: #b91c1c;            /* Light Red Text */
+    color: #FF4444;            /* Light Red Text */
     /*border-color: #b91c1c;*/
 }
 /* Red for DELAYED - Applied to the flipping top half (.flap) */
 .flap.status-delayed {
     /*background-color: #b91c1c;*/
-    color: #b91c1c;
+    color: #FF4444;
     /*border-color: #b91c1c;*/
 }
 
 /* Green for BOARDING/GATE OPEN - Applied to .char-cell and the static bottom half (::after) */
 .char-cell.status-boarding-or-open,
 .char-cell.status-boarding-or-open::after {
-    color: #149c5c;
+    color: #00AA00;
 }
 /* Green for BOARDING/GATE OPEN - Applied to the flipping top half (.flap) */
 .flap.status-boarding-or-open {
-    color: #149c5c;
+    color: #00AA00;
 }
 
 .justify-center {
@@ -196,26 +194,27 @@ h1.airplane {
 /* ======================================================= */
 
 .notification-banner {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
     background-color: #1a1a1a;  /* Lighter background */
     color: #eee;             /* Match board text color */
     border: none;
-    padding: 24px 20px;     /* Increased padding around content */
+    padding: 32px 24px;     /* Increased padding for better readability and spacing */
     border-radius: 8px;      /* Rounded corners */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     font-size: 13px;         /* Match default table text size */
     z-index: 1000;
     opacity: 0;             /* Start hidden */
+    pointer-events: none;   /* Prevent clicks when hidden */
     transition: opacity 0.5s ease-in-out;  /* Smooth fade transition */
 }
 
 .notification-banner.show {
     opacity: 1;             /* Show when showBanner is true */
+    pointer-events: auto;   /* Allow clicks when shown */
 }
 
 .banner-close {
@@ -224,12 +223,12 @@ h1.airplane {
     right: 12px;
     background: none;
     border: none;
-    font-size: 18px;         /* Smaller to fit theme */
+    font-size: 20px;         /* Larger for better visibility */
     cursor: pointer;
     color: #888;
-    padding: 0;
-    width: 30px;
-    height: 30px;
+    padding: 8px;            /* Added padding for better spacing */
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -248,6 +247,7 @@ h1.airplane {
     letter-spacing: 0.1em;
     font-weight: 700;
     margin: 0 0 8px 0;
+    padding: 0 20px;
 }
 
 .banner-link {
@@ -270,6 +270,22 @@ h1.airplane {
     color: #eed114;
 }
 
+.banner-message {
+    padding: 0 20px;
+}
+
+.banner-message p {
+    margin: 12px 0;
+}
+
+.header-row .header-cell:last-child {
+    text-align: right;
+}
+
+.flight-row-grid .char-cell:nth-child(5) {
+    text-align: right;
+}
+
 /* ======================================================= */
 /* 📱 MOBILE MEDIA QUERIES */
 /* ======================================================= */
@@ -278,6 +294,10 @@ h1.airplane {
 @media (max-width: 413px) {
     body {
         justify-content: center;  /* Center board content on small phones */
+    }
+
+    .board {
+        width: 100%;
     }
 
     :root {
@@ -290,14 +310,17 @@ h1.airplane {
     }
 
     .notification-banner {
-        width: 85%;  /* Smaller percentage for small phones modal */
-        max-width: 300px;
+        width: 100%;
     }
 
     .banner-link {
-        font-size: 14px;  /* Slightly larger for better readability */
-        padding: 12px 8px;  /* More padding for better touch targets */
-        min-height: 44px;  /* Standard mobile touch target size */
+        font-size: 16px;  /* Larger for better readability */
+        padding: 16px 12px;  /* More padding for better touch targets */
+        min-height: 48px;  /* Larger mobile touch target size */
+    }
+
+    .banner-message, .banner-title {
+        padding: 0 16px;
     }
 }
 
@@ -343,15 +366,14 @@ h1.airplane {
     }
 
     .notification-banner {
-        width: 90%;
-        max-width: 400px;
+        width: 100%;
         font-size: 14px;  /* Match table text font size */
     }
 
     .banner-link {
-        font-size: 13px;  /* Slightly larger for phones */
-        padding: 10px 4px;  /* Better touch targets for phones */
-        min-height: 40px;  /* Good touch target size for phones */
+        font-size: 16px;  /* Larger for better readability */
+        padding: 16px 12px;  /* More padding for better touch targets */
+        min-height: 48px;  /* Larger mobile touch target size */
     }
 
     .header-row, .flight-row-grid {
@@ -381,13 +403,16 @@ h1.airplane {
     }
 
     .notification-banner {
-        width: 90%;
-        max-width: 500px;
+        width: 100%;
         font-size: 15px;  /* Match table text font size */
     }
 
     .header-row, .flight-row-grid {
         grid-template-columns: 17fr 35fr 15fr 8fr 25fr;
         column-gap: 2px;
+    }
+
+    .banner-message, .banner-title {
+        padding: 0 40px;
     }
 }
