@@ -14,7 +14,7 @@ body {
     font-family: 'IBM Plex Mono', monospace;
     color: var(--char-color);
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     padding: 0 05px;
@@ -196,11 +196,12 @@ h1.airplane {
 /* ======================================================= */
 
 .notification-banner {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 98%;
-    max-width: 900px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
     background-color: #1a1a1a;  /* Lighter background */
     color: #eee;             /* Match board text color */
     border: none;
@@ -208,7 +209,7 @@ h1.airplane {
     border-radius: 8px;      /* Rounded corners */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     font-size: 13px;         /* Match default table text size */
-    z-index: 10;
+    z-index: 1000;
     opacity: 0;             /* Start hidden */
     transition: opacity 0.5s ease-in-out;  /* Smooth fade transition */
 }
@@ -253,12 +254,16 @@ h1.airplane {
     position: relative;
     font-size: 12px;
     color: #888;
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
     text-align: center;
     padding: 8px 0;
     margin-bottom: 12px;
     font-family: 'IBM Plex Mono', monospace;
+    min-height: 32px; /* Ensure minimum touch target */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .banner-link:hover {
@@ -273,7 +278,6 @@ h1.airplane {
 @media (max-width: 413px) {
     body {
         justify-content: center;  /* Center board content on small phones */
-        align-items: center;
     }
 
     :root {
@@ -286,7 +290,14 @@ h1.airplane {
     }
 
     .notification-banner {
-        width: 252px;  /* 70% of small phones grid width (360px) */
+        width: 85%;  /* Smaller percentage for small phones modal */
+        max-width: 300px;
+    }
+
+    .banner-link {
+        font-size: 14px;  /* Slightly larger for better readability */
+        padding: 12px 8px;  /* More padding for better touch targets */
+        min-height: 44px;  /* Standard mobile touch target size */
     }
 }
 
@@ -332,8 +343,15 @@ h1.airplane {
     }
 
     .notification-banner {
-        width: 294px;  /* 70% of large phones grid width (420px) */
+        width: 90%;
+        max-width: 400px;
         font-size: 14px;  /* Match table text font size */
+    }
+
+    .banner-link {
+        font-size: 13px;  /* Slightly larger for phones */
+        padding: 10px 4px;  /* Better touch targets for phones */
+        min-height: 40px;  /* Good touch target size for phones */
     }
 
     .header-row, .flight-row-grid {
@@ -363,7 +381,8 @@ h1.airplane {
     }
 
     .notification-banner {
-        width: 476px;  /* 70% of laptops grid width (680px) */
+        width: 90%;
+        max-width: 500px;
         font-size: 15px;  /* Match table text font size */
     }
 

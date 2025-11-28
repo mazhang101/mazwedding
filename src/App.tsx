@@ -64,7 +64,7 @@ function App() {
 
       {bannerDismissed && !showBanner && (
         <div className="banner-link" onClick={openBanner}>
-          View Important Update For Flight No. MA 27
+          Update For Flight No. MA27
         </div>
       )}
     </div>
