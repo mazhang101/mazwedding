@@ -53,7 +53,7 @@ function App() {
         <div className={`notification-banner ${showBanner ? 'show' : ''}`}>
           <button className="banner-close" onClick={closeBanner}>×</button>
           <div className="banner-title">
-            Important Update: Flight No. MA 27
+            Update on Flight No. MA27
           </div>
           <div className="banner-message">
           <p>We strongly regret to inform you that your flight, MA 27 to Michelle and Andrew's European Summer Wedding 2026, is now delayed due to schedule overload.</p>
@@ -66,7 +66,7 @@ function App() {
 
       {bannerDismissed && !showBanner && (
         <div className="banner-link" onClick={openBanner}>
-          Update For Flight No. MA27
+          See Updates for Flight No. MA27
         </div>
       )}
     </div>
