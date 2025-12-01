@@ -4,7 +4,17 @@
   <meta charset="utf-8">
   <title>Redirecting...</title>
   <script>
-    window.location.replace('/index.html');
+    const repoName = '/mazwedding';
+    const pathname = window.location.pathname;
+    let newPath = pathname;
+
+    if (pathname.startsWith(repoName)) {
+      newPath = pathname.substring(repoName.length);
+    }
+
+    sessionStorage.setItem('redirectPath', newPath);
+
+    window.location.replace(repoName + '/index.html');
   </script>
 </head>
 <body>
