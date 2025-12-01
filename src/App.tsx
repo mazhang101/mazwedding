@@ -38,7 +38,7 @@ function App() {
         <div className="header-row">
           <div className="header-cell">Time</div>
           <div className="header-cell">Destination</div>
-          <div className="header-cell">Flight No.</div>
+          <div className="header-cell">Flight</div>
           <div className="header-cell">Gate</div>
           <div className="header-cell">  Status</div>
         </div>
@@ -57,7 +57,7 @@ function App() {
           </div>
           <div className="banner-message">
           <p>We strongly regret to inform you that Flight MA27 to Michelle and Andrew's European Summer Wedding 2026, is now delayed due to overbooked flights.</p>
-          <p><strong>Original Departure:</strong> Summer 2026</p>
+          <p><strong>Original Departure:</strong> European Summer 2026</p>
           <p><strong>New Estimated Departure:</strong> 2027</p>
           <p><strong>Destination:</strong> TBC mid-2026</p>
           </div>

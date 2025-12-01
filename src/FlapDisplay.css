@@ -4,7 +4,7 @@
     --flip-duration: 0.1s;
     --char-color: #eee;   /* Light Text (White/Off-White) */
     --bg-color: #1a1a1a;  /* Dark Flap Surface (Dark Gray) */
-    --frame-color: #000000; /* True Black Frame/Gap */
+    --frame-color: #0a0a0a; /* Dark Gray Frame/Gap */
     --char-font: 13px;
     --char-width: 10px;
 }
