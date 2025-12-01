@@ -10,27 +10,33 @@
 }
 
 body {
-    background-color: black;   /* Dark background for surrounding area */
+    background-color: black;
     font-family: 'IBM Plex Mono', monospace;
     color: var(--char-color);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; /* Keeps it at the top */
     min-height: 100vh;
-    padding: 0 05px;
+    padding: 0; /* Remove the 05px padding to ensure perfect centering */
+    overflow-x: hidden; /* Prevents accidental horizontal scrolling */
 }
 
     .board {
-        /*border: 10px solid #2d3748;*/
-        background-color: #0A0A0A;
-        padding: 1rem 0;
-        border-radius: 0px;
-        /* Set width to 100% for full width experience on all viewports */
-        width: 100%;
-        /* Center the block horizontally */
-        margin: 0 auto;
-        position: relative;   /* Create positioning context for absolutely positioned banner */
-    }
+    /* border: 10px solid #2d3748; */
+    background-color: #0A0A0A;
+    padding: 1rem 0;
+    border-radius: 0px;
+    
+    /* --- CHANGE HERE --- */
+    /* OLD: width: 100%; */
+    width: fit-content;  /* Shrink wrap the content */
+    max-width: 100%;     /* Prevent it from causing scrollbars on tiny screens */
+    /* ------------------- */
+    
+    /* Center the block horizontally */
+    margin: 0 auto;
+    position: relative;
+}
 
     .header-row, .flight-row-grid {
         grid-template-columns: 17fr 37fr 15fr 8fr 23fr;
@@ -252,7 +258,7 @@ h1.airplane {
 
 .banner-link {
     position: relative;
-    font-size: 12px;
+    font-size: 10px;
     color: #888;
     text-decoration: none;
     cursor: pointer;
@@ -314,7 +320,7 @@ h1.airplane {
     }
 
     .banner-link {
-        font-size: 16px;  /* Larger for better readability */
+        font-size: 10px;
         padding: 16px 12px;  /* More padding for better touch targets */
         min-height: 48px;  /* Larger mobile touch target size */
     }
@@ -356,7 +362,7 @@ h1.airplane {
     }
 
     .banner-link {
-        font-size: 16px;  /* Larger for better readability */
+        font-size: 10px;
         padding: 16px 12px;  /* More padding for better touch targets */
         min-height: 48px;  /* Larger mobile touch target size */
     }
@@ -390,7 +396,8 @@ h1.airplane {
     }
 
     .board {
-        padding: 0.75rem 0;
+        width: fit-content;
+        margin: 0 auto;
     }
 
     .header-cell {
@@ -421,17 +428,12 @@ h1.airplane {
     }
 
     .banner-link {
-        font-size: 16px;  /* Larger for better readability */
+        font-size: 10px;
         padding: 16px 12px;  /* More padding for better touch targets */
         min-height: 48px;  /* Larger mobile touch target size */
     }
 
-    .header-row, .flight-row-grid {
-        grid-template-columns: 17fr 28fr 15fr 8fr 32fr;
-        display: grid;
-        column-gap: 0px;
-        justify-items: start;
-    }
+    
 }
 
 /* Laptops/Tablets (≥768px) */
