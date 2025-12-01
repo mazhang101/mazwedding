@@ -290,8 +290,8 @@ h1.airplane {
 /* 📱 MOBILE MEDIA QUERIES */
 /* ======================================================= */
 
-/* Small phones (≤413px) */
-@media (max-width: 413px) {
+/* Small phones (≤375px) - iPhone SE */
+@media (max-width: 375px) {
     body {
         justify-content: center;  /* Center board content on small phones */
     }
@@ -302,6 +302,48 @@ h1.airplane {
 
     :root {
         --flap-height: 20px;
+        --char-width: 8px;
+    }
+
+    .header-row, .flight-row-grid {
+        column-gap: 0px;
+    }
+
+    .notification-banner {
+        width: 100%;
+    }
+
+    .banner-link {
+        font-size: 16px;  /* Larger for better readability */
+        padding: 16px 12px;  /* More padding for better touch targets */
+        min-height: 48px;  /* Larger mobile touch target size */
+    }
+
+    .banner-message, .banner-title {
+        padding: 0 16px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .header-cell {
+        font-size: 0.5rem;
+    }
+}
+
+/* Medium phones (376px-413px) - iPhone standard */
+@media (min-width: 376px) and (max-width: 413px) {
+    body {
+        justify-content: center;  /* Center board content on medium phones */
+    }
+
+    .board {
+        width: 100%;
+    }
+
+    :root {
+        --flap-height: 22px;
         --char-width: 9px;
     }
 
@@ -322,12 +364,20 @@ h1.airplane {
     .banner-message, .banner-title {
         padding: 0 16px;
     }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .header-cell {
+        font-size: 0.52rem;
+    }
 }
 
-/* Large phones (≥414px) */
-@media (min-width: 414px) {
+/* Large phones (414px-480px) - iPhone 15 Pro Max, Plus models */
+@media (min-width: 414px) and (max-width: 480px) {
     body {
-        justify-content: center;  /* Center board content except smallest phones */
+        justify-content: center;  /* Center board content on large phones */
     }
 
     :root {
