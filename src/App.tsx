@@ -56,7 +56,7 @@ function App() {
             Update on Flight No. MA27
           </div>
           <div className="banner-message">
-          <p>We strongly regret to inform you that your flight, MA 27 to Michelle and Andrew's European Summer Wedding 2026, is now delayed due to schedule overload.</p>
+          <p>We strongly regret to inform you that Flight MA27 to Michelle and Andrew's European Summer Wedding 2026, is now delayed due to overbooked flights.</p>
           <p><strong>Original Departure:</strong> Summer 2026</p>
           <p><strong>New Estimated Departure:</strong> 2027</p>
           <p><strong>Destination:</strong> TBC mid-2026</p>
